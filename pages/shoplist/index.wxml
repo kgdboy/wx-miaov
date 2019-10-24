@@ -1,0 +1,48 @@
+<!--pages/shoplist/index.wxml-->
+<!-- getval这个方法根据用户传过来的分数或距离，返回对应的汉字 -->
+<wxs module="getval">
+  module.exports = function(value){
+    var val = '';
+    if(value=='score') val='按分数'
+    if(value=='distance') val = '按距离'
+    return val;
+  }
+</wxs>
+<import src='/common/template/list.wxml' />
+<view class="page" >
+  <view class="list-nav">
+    <view class="near">
+    <!-- 
+        用isRange的值控制是否添加active样式，如果为真，则有active样式。
+        下面两处点击时都调用的是onSelectTap方法，如何区分？他们各自标签都有data-type="range"，data-type="sort" 当用户点击时会将此值当参数传递过去。
+        onSelectTap会判断当前用户选择了什么，根据结果对isRange和isSort进行赋值，从而也能达到哪个模块能显示哪个模块能隐藏的功能。
+     -->
+      <text class="iconfont icon-sanjiaoxing {{isRange?'active':''}}" bindtap="onSelectTap" data-type="range"> {{distance}}</text>
+    </view>
+    <view class="sort">
+      <text class="iconfont icon-sanjiaoxing {{isSort?'active':''}}" bindtap="onSelectTap" data-type="sort"> {{getval(sort)}}</text>
+    </view>
+  </view>
+  <view class="shoplist" >
+  <!-- 向模板传递数据 -->
+    <template is="list" data="{{list:shopList}}" ></template>
+  </view>
+<!-- loading -->
+  <view class="load-more">正在加载更多内容...</view>
+  <!--isRange和isSort 的真与否来自onSelectTap的判断  -->
+  <!-- onValueTap 方法会请求接口 -->
+  <view class="options range {{isRange?'display':''}}" bindtap="onValueTap" data-type="distance">
+  <!--{{distance==='500'?'active':''}} 当前distance的值是多少，这个值就有active属性  -->
+  <!--data-value="500" 会产生冒泡，会把这个值传递给onValueTap方法  -->
+    <view class="{{distance==='500'?'active':''}}" data-value="500">500米</view>
+    <view class="{{distance==='1000'?'active':''}}" data-value="1000">1000米</view>
+    <view class="{{distance==='2000'?'active':''}}" data-value="2000">2000米</view>
+  </view>
+  <view class="options sort {{isSort?'display':''}}" bindtap="onValueTap" data-type="sort">
+      <view class="{{sort==='score'?'active':''}}" data-value="score">根据评分排序</view>
+      <view class="{{sort==='distance'?'active':''}}" data-value="distance">根据距离排序</view>
+  </view>
+  <!-- 遮罩层，当type有值时就遮罩，点击时取消 -->
+<view class="mask" wx:if="{{type}}" bindtap="onmask"></view>
+
+</view>

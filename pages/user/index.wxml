@@ -1,0 +1,21 @@
+<view class="page">
+  <button wx:if="{{!isLogin}}" type="primary" class="login" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" >请先授权登录</button>
+  <!-- <button type="wram" open-type="getUserInfo" bindgetuserinfo="onGetUserInfoByPhp">使用PHP服务器登录</button> -->
+  <view wx:if="{{isLogin}}" class="userinfo">
+    <view class="logo">
+      <image src="{{user.avatarUrl}}"></image>
+    </view>
+    <view class="introduction">
+      <view class="attr">
+        <text class="Nickname">{{user.nickName}}</text><text class="gender">{{user.gender==1?'男':'女'}}</text>
+      </view>
+      <view class="nationality">
+        <text>{{user.province}} {{user.city}}</text>
+      </view>
+    </view>
+    <navigator class="fav" url="../collent/index">
+      <view>收藏列表</view>
+      <view class="toFav iconfont icon-sanjiaoxing"></view>
+    </navigator> 
+  </view>
+</view>

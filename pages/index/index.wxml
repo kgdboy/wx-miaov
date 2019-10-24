@@ -1,0 +1,40 @@
+<!-- 引入模板 -->
+<import src='/common/template/list.wxml' />
+<view class="scroll-page">
+<view class="header">
+  <navigator class="city" url="../citylist/index">锦州</navigator>
+  <navigator class="userinfo" url="../user/index">
+    <image src="/common/img/userinfo.gif"></image>
+  </navigator>
+</view>
+<view class="nav-list">
+  <navigator url="/pages/shoplist/index?id=40">
+    <image src="/common/img/food.png"></image>
+    <text>美食</text>
+  </navigator>
+  <navigator url="/pages/shoplist/index?id=45">
+    <image src="/common/img/ktv.png"></image>
+    <text>KTV</text>
+  </navigator>
+  <navigator url="/pages/shoplist/index?id=48">
+    <image src="/common/img/pedicure.png"></image>
+    <text>足疗/按摩</text>
+  </navigator>
+  <navigator url="/pages/shoplist/index?id=41">
+    <image src="/common/img/hotel.png"></image>
+    <text>酒店</text>
+  </navigator>
+  <navigator url="/pages/shoplist/index?id=49">
+    <image src="/common/img/hair.png"></image>
+    <text>丽人/美发</text>
+  </navigator>
+</view>
+<view class="hot">
+  <text class="hot-title">猜你喜欢</text>
+  <!-- 引入模板 -->
+  <template is='list' data="{{list:guessLike}}" />
+</view>
+<!-- loading -->
+<view class="load-more" wx:if ="{{isLoading}}">正在加载更多内容...</view>
+<view class="load-more" wx:if="{{isLoadAll}}">没有更多内容了...</view>
+</view>

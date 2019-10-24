@@ -1,0 +1,65 @@
+@import "../../common/css/font.wxss";
+.page{
+  background-color: #cccccc;
+  font-family: "微软雅黑";
+}
+.login{
+  margin-top: 100rpx;
+  background: rgb(233, 116, 21);
+
+}
+.userinfo{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+}
+.logo{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 17rpx 0;
+
+}
+.logo image{
+  height: 140rpx;
+  width: 140rpx;
+  border-radius: 50%;
+  border:1rpx solid #ccc;
+}
+.introduction{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 10rpx;
+}
+
+.Nickname,.gender{
+  height: 37rpx;
+  line-height: 37rpx;
+}
+.gender{
+  margin-left: 20rpx;
+}
+
+.nationality text{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+
+.fav{
+  height: 69rpx;
+  line-height: 69rpx;
+  font-size: 16px;
+  padding:0px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.toFav{
+  transform: rotate(-90deg);
+}

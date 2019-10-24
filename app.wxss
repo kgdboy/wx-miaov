@@ -1,0 +1,18 @@
+page{
+  background: #f0f0f0;
+  height: 100%;
+}
+.scroll-page{
+  height: 100%;
+}
+.load-more{
+  font-size: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #333;
+}
+.fgx{
+  width:100%;
+  height: 4rpx;
+  background: #f0f0f0;
+}

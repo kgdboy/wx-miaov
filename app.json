@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/citylist/index",
+    "pages/user/index",
+    "pages/shopdetails/index",
+    "pages/shoplist/index",
+    "pages/login/index",
+    "pages/collent/index"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#181818",
+    "navigationBarTitleText": "美味点评",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json"
+}

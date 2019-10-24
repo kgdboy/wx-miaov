@@ -1,0 +1,90 @@
+<wxs module="show">
+  module.exports=function(a){
+  return a=="1";
+}
+</wxs>
+<view class="page">
+  <view class="list">
+    <view>
+      <view class="list-item">
+        <view class="list-img"> 
+          <!-- 为了防止加载速度慢而报错，先进行判断，判断图片是否有值 -->
+          <image src='{{shopDetails.info.image_path?"https://data.miaov.com/"+shopDetails.info.image_path:""}}'></image>
+        </view>
+        <view class="list-info">
+          <!-- 商铺标题 -->
+          <view class="list-info-title">{{shopDetails.info.title}}</view>
+          <view class="list-info-score">
+            <view class="list-info-score-img">
+              <!-- 评分 -->
+              <view class="score" style="width:{{shopDetails.info.score*10}}%"></view>
+            </view>
+            <view class="list-info-score-text">
+              <!-- 评论条数 -->
+              <text class="num"> {{shopDetails.info.view}}条</text>
+              <!-- 平均消费 -->
+              <text>¥ {{shopDetails.info.price}}元/人</text>
+            </view>
+          </view>
+          <view class="list-info-fl">
+            <view class="list-info-fl-addr">
+              <text>环境:{{shopDetails.info.environment}}</text><text>服务:{{shopDetails.info.service}}</text>
+            </view>
+          </view>
+          <view class="list-info-tag">
+            <!-- 地址、类别 -->
+            <text>{{shopDetails.info.place}}</text><text>{{shopDetails.info.classify}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="fgx"></view>
+  </view>
+  <view class="desc">
+    <view class="tu">
+      <!-- 营业时间 -->
+      <text class="iconfont icon-icon-test timeend "> {{shopDetails.info.shopHours}}</text>
+      <!-- 是否有配套设施，请求的数据是以0（没有）或1（有）来区分的，所以这里需要人为做下判断 -->
+      <text class="iconfont icon-wifi wifi" wx:if="{{shopDetails.info.hasWifi!=='0'}}"> WIFI</text>
+      <text class="iconfont icon-shafa shafa" wx:if="{{shopDetails.info.hasSofa!=='0'}}"> 沙发</text>
+      <text class="iconfont icon-baoxiang baoxiang" wx:if="{{shopDetails.info.hasBox!=='0'}}"> 包厢</text>
+      <text class="iconfont icon-shuye shuye" wx:if="{{shopDetails.info.hasSight!=='0'}}"> 观景</text>
+      <text class="iconfont icon-yizi yizi" wx:if="{{shopDetails.info.hasBabyChair!=='0'}}"> 宝宝椅</text>
+    </view>
+    <view class="sjx">
+      <text class="iconfont icon-sanjiaoxing"></text>
+    </view>
+  </view>
+  <view class="fgx"></view>
+  <view class="map">
+    <view class="iconfont icon-dingwei address"> 
+      <!-- 地址 -->
+    <text> {{address}}</text>
+    <block wx:if="{{hasGetLocation}}">
+      <view class="daohang" wx:if="{{status==0}}">距您步行{{distance}}m，需要{{duration}}分钟</view>    
+      <view class="daohang" wx:else>{{error}}</view>    
+    </block>
+    <button  open-type="openSetting" wx:else>打开位置授权</button>
+    </view>
+    <view class="iconfont tel"><image src="/common/img/tel.gif"></image> </view>
+  </view>
+  <view class="tuijian">
+    <view class="bang">
+      <image src="/common/img/bang.gif"></image>
+      <text>『上地小吃快餐热门榜』第<text class="num">1</text>名</text>
+    </view>
+    <view class="iconfont icon-sanjiaoxing"></view>
+  </view>
+  <view class="fav">
+  <!-- 根据是否有fav_id来显示颜色和收藏或取消收藏  1024 -->
+      <button type="{{fav_id==''?'primary':'warn'}}" class="iconfont icon-shoucang shoucang" bindtap="favShop" > 
+      {{fav_id==""?"收藏店铺":"取消收藏"}}  
+      </button>
+
+    <!-- <view>|</view>
+    <navigator>
+      <view class="iconfont icon-fuwudianping dianping"> 点评</view>    
+    </navigator> -->
+    
+  </view>
+</view>

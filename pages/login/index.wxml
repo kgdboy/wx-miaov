@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="login">
+    <!-- 
+        open-type="getUserInfo" 固定写法，否则不能打开登录窗口
+        bindgetuserinfo="onGetUserInfo" 这个方法是用户确认登录后的回调函数。这个回调会返回一个值
+        这个值是登录用户的全部信息
+     -->
+    <button type="primary" class="login" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">请先授权登录</button>
+    <text class="title">若想使用全部功能，请先授权</text>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+.login{
+  margin:40rpx auto;
+}
+.login button{
+  width: 300rpx;
+}
+.title{
+  display: block;
+  font-size: 26rpx;
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,49 @@
+<!-- 通过wxs标签，可以在里面写JS代码，下面的功能就是要将tag标签数据以逗号分隔压成数组 tags相当于方法名，tag相当于方法的参数-->
+<wxs module="tags">
+  module.exports=function(tag){
+  if(!tag) return;
+  return tag.split(',');
+}
+</wxs>
+<template name='list'>
+  <!-- 循环列出商铺 -->
+  <!--  list的数据是从template模板标签中带过来的，即：<template is='list' data="{{list:guessLike}}" />
+        模板中的guessLike的数据是从后台请求来后存放到guessLike中的 -->
+  <view class="list"
+    wx:for="{{list}}"
+    wx:key
+    id="id"
+  >
+    <navigator url="/pages/shopdetails/index?id={{item.id}}">
+      <view class="list-item">
+        <view class="list-img"> 
+          <image src="https://data.miaov.com{{item.image_path}}"></image>
+        </view>
+        <view class="list-info">
+          <view class="list-info-title">{{item.title}}</view>
+          <view class="list-info-score">
+            <view class="list-info-score-img">
+              <view class="score" style="width:{{item.score*10}}%;"></view>
+            </view>
+            <view class="list-info-score-text">
+              <text>¥ {{item.price}}元/人</text>
+            </view>
+          </view>
+          <view class="list-info-fl">
+            <view class="list-info-fl-addr">
+              <text>{{item.place}}</text><text>{{item.classify}}</text>
+            </view>
+            <view class="list-info-fl-distance">
+              <text>{{item.distance}}m</text>
+            </view>
+          </view>
+          <view class="list-info-tag">
+            <!-- 在这里调用tags方法，方法的参数是请求来的label数据，该方法返回一个数组，这里用wx:for做循环显示 -->
+            <text wx:for="{{tags(item.label)}}" wx:key>{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+    <view class="fgx"></view>
+  </view>
+</template>
