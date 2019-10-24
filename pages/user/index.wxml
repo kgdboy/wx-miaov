@@ -13,7 +13,7 @@
         <text>{{user.province}} {{user.city}}</text>
       </view>
     </view>
-    <navigator class="fav" url="../collent/index">
+    <navigator class="fav" url="../collect/index">
       <view>收藏列表</view>
       <view class="toFav iconfont icon-sanjiaoxing"></view>
     </navigator> 
