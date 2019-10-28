@@ -1,8 +1,9 @@
-<view class="page">
+<scroll-view  scroll-y enable-back-to-top scroll-into-view="city-to-letter-{{selectCity}}">
+  <view class="page">
   <view class="city_GPS">
-    <text>锦州市</text> <text class="gps">GPS定位</text>
+    <text>--</text> <text class="gps">GPS定位</text>
   </view>
-  <view class="city_hot">热门城市</view>
+  <view class="city_hot" id="city-to-letter-hot">热门城市</view>
   <view class="city_hot_list">
     <navigator  hover-class="none"><view class="city_hot_list_item">上海</view></navigator>
     <navigator hover-class="none"><view class="city_hot_list_item">北京</view></navigator>
@@ -17,59 +18,19 @@
     <navigator  hover-class="none"><view class="city_hot_list_item">重庆</view></navigator>
     <navigator  hover-class="none"><view class="city_hot_list_item">西安</view></navigator>
   </view>
-  <view class="city_list">
-    <view class="city_index">A</view>
-    <view class="city_index_list">
-      <navigator  hover-class="none"><view class="city_index_list_item">阿巴嘎旗</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">阿坝</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">阿坝县</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">阿城区</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">阿尔山市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">阿合奇县</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">阿克塞哈萨克族自治县</view></navigator>
-    </view>
-    <view class="city_index">B</view>
-    <view class="city_index_list">
-      <navigator  hover-class="none"><view class="city_index_list_item">北京市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">蚌埠市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">白银市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">毕节市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">保定市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">霸州市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">泊头市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">北安市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">本溪市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">白山市</view></navigator>
-      <navigator  hover-class="none"><view class="city_index_list_item">白城市</view></navigator>
+  <view class="city_list" wx:for="{{cityData}}" >
+    <view class="city_index" id="city-to-letter-{{item.letter}}">{{item.letter}}</view>
+    <view class="city_index_list" wx:for="{{item.citys}}">
+      <view class="city_index_list_item">{{item}}</view>
     </view>
   </view>
-  <view class="hot_nav">
-    <view class="hot_nav_title">热门</view>
+  <view class="hot_nav" bind:touchstart="selectCity" catch:touchmove="slideSelect">
+    <view class="hot_nav_title  sel-list"  data-id="hot" >热门</view>
     <view class="host_nav_list">
-      <view class="host_nav_list_item">
-        <view>A</view>
-        <view>B</view>
-        <view>C</view>
-        <view>D</view>
-        <view>E</view>
-        <view>F</view>
-        <view>G</view>
-        <view>H</view>
-        <view>J</view>
-        <view>K</view>
-        <view>L</view>
-        <view>M</view>
-        <view>N</view>
-        <view>P</view>
-        <view>Q</view>
-        <view>R</view>
-        <view>S</view>
-        <view>T</view>
-        <view>W</view>
-        <view>X</view>
-        <view>Y</view>
-        <view>Z</view>
+      <view class="host_nav_list_item" wx:for="{{cityData}}">
+        <view data-id="{{item.letter}}" class="sel-list" >{{item.letter}}</view>
       </view>
     </view>
   </view>
 </view>
+</scroll-view>

@@ -1,5 +1,6 @@
 <import src='/common/template/list.wxml' />
 <scroll-view class="fav">
-  <template is="list"></template>
+  
+  <template is='list' data="{{list:shoplist}}" />
   <view class="loadMore">加载更多...</view>
 </scroll-view>

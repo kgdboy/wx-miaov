@@ -14,7 +14,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function(options) {
         api.getSetting()
             /**
              * res.authSetting['scope.userInfo']
@@ -28,19 +28,19 @@ Page({
                     throw new Error('没有授权用户信息')
                 }
             })
-            .then(res=>{
+            .then(res => {
                 let userInfo = wx.getStorageSync('userinfo');
                 return userInfo ? userInfo : req.login(res)
             })
-            .then(res=>{
-                this.setData({isLogin:true,user:res})
+            .then(res => {
+                this.setData({ isLogin: true, user: res })
             })
             .catch(e => {
 
 
             })
     },
-    onGetUserInfo({detail}) {
+    onGetUserInfo({ detail }) {
         // 如果用户授权过则 返回信息 getUserInfo
         if (detail.errMsg === 'getUserInfo:ok') {
             // console.log(detail);
@@ -50,23 +50,21 @@ Page({
                 .then(info => {
                     this.setData({
                         isLogin: true,
-                        user:info
+                        user: info
                     })
 
                 })
         }
     },
-    onGetUserInfoByPhp({detail}){
+    onGetUserInfoByPhp({ detail }) {
         if (detail.errMsg === 'getUserInfo:ok') {
             req.loginPhp(detail)
-            .then(info => {
-                this.setData({
-                    isLogin: true,
-                    user:info
+                .then(info => {
+                    this.setData({
+                        isLogin: true,
+                        user: info
+                    })
                 })
-                
-
-            })
         }
     }
 
